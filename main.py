@@ -18,15 +18,13 @@ random.seed(seed_value)
 fake = Faker()
 Faker.seed(faker_seed)
 
-num_names = len(df) # Change this to the number of names you want to generate
-fake_names = set()  # Use a set to ensure uniqueness
-
-while len(fake_names) < num_names:
-    fake_name = fake.name()
-    fake_names.add(fake_name)
-
-# Convert the set of fake names to a list
-fake_names_list = list(fake_names)
+def generate_gender_names(row):
+    if row['Gender'] == 1:
+        return fake.first_name_male()
+    elif row['Gender'] == 2:
+        return fake.first_name_female()
+    else:
+        return None
 
 def split_and_clean(value):
     value = value.replace('.', '')  # Remove full stops
@@ -56,7 +54,8 @@ df.fillna(0, inplace=True)
 
 columns_to_compare = ['GPA', 'calories_day', 'coffee', 'cook', 'cuisine', 'diet_current_coded', 'eating_out', 'employment', 'ethnic_food', 'exercise', 'fav_food', 'fruit_day', 'income', 'marital_status', 'pay_meal_out', 'sports', 'vitamins']
 
-df['names'] = fake_names_list
+df['names'] = df.apply(generate_gender_names, axis=1)
+
 
 df_final = df
 
