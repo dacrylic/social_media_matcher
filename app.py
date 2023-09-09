@@ -381,7 +381,7 @@ if st.sidebar.button("Submit"):
             st.write('Comfort Foods: ' + df_final['comfort_food'].iloc[index])
         except:
             st.write('Comfort Foods: NA')
-        st.write(f"Match score: {normalized_scores[index] * 100:.2f}%")
+        st.write(f"Match score: {cosine_similarities_query[0][index] * 100:.2f}%")  # Print the raw cosine similarity scor
 
 # Reset session state variables when the app starts
 if 'closest_match_indices' not in session_state:
