@@ -155,7 +155,7 @@ option_to_value = {
 }
 
 # Use st.sidebar.radio to display the options and capture the user's choice
-selected_option_text = st.sidebar.radio("How often do you eat out?", list(option_to_value.keys()))
+selected_option_text = st.sidebar.radio("Are you currently employed?", list(option_to_value.keys()))
 
 # Map the selected text option to the corresponding numeric value
 selected_option_value = option_to_value[selected_option_text]
